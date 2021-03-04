@@ -40,6 +40,11 @@ public class BottleDispenser {
         return money;
     }
 
+    public String getName( int beverageType) {
+        Bottle selectedBottle = myBottles.get(beverageType);
+        return selectedBottle.getName();
+    }
+
     public int buyBottle( int beverageType ) {
         Bottle selectedBottle;
 

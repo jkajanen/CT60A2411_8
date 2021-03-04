@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("Klink klink. Money came out!");
                 break;
             default:
-                fieldMessages.setText("KACHUNK! " + "selectedBottle.getName()" + " came out of the dispenser!");
+                fieldMessages.setText("KACHUNK! " + myBD.getName(0) + " came out of the dispenser!");
                 System.out.println("KACHUNK! " + "selectedBottle.getName()" + " came out of the dispenser!");
                 break;
         }
