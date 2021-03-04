@@ -78,4 +78,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewMessages" />
 
+    <SeekBar
+        android:id="@+id/seekBarMoney"
+        android:layout_width="0dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:clickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/buttonAddMoney"
+        app:layout_constraintTop_toBottomOf="@+id/textViewBottleDispenser" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

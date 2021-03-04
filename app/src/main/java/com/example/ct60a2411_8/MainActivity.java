@@ -6,17 +6,25 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     TextView titleBottleDispenser;
     TextView titleMessages;
     TextView fieldMessages;
+    SeekBar seekBar;
+
 
     int bottleDispenserStatus = 0;
+    float money;
 
     Context context = null;
+
+
+
 
     BottleDispenser myBD = BottleDispenser.getInstance(); // Singleton!!!
 
@@ -28,16 +36,40 @@ public class MainActivity extends AppCompatActivity {
 
         context = MainActivity.this;
 
+        seekBar = (SeekBar)findViewById(R.id.seekBarMoney);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress,
+                                          boolean fromUser) {
+                //Toast.makeText(getApplicationContext(),"seekbar progress: "+progress, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                //Toast.makeText(getApplicationContext(),"seekbar touch started!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                //Toast.makeText(getApplicationContext(),"seekbar touch stopped!", Toast.LENGTH_SHORT).show();
+                float moneyIn = seekBar.getProgress()/10;
+                fieldMessages.setText("Money to be added: " + moneyIn + " €" );
+                money = moneyIn;
+                //myBD.addMoney(moneyIn);
+            }
+        });
+
         myInit();
         //TextView test = (TextView) view.findViewById(R.id.textView2);
         //test.setBackgroundResource(context.getResources().getColor(android.R.color.holo_green_light));
     }
 
     public void pushAddMoneyButton(View v) {
-        float moneyIn = 1;
+        float moneyIn = money;
         fieldMessages.setText(R.string.textViewAddMoney);
         myBD.addMoney(moneyIn);
         fieldMessages.setText("Added: " + moneyIn + " €\n" + "Total: " + myBD.getMoney() + " €\n");
+        // todo: Lisää seekBarin nollaus!!
         }
 
     public void pushBuyButton(View v) {
