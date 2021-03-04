@@ -7,12 +7,75 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/textViewBottleDispenser"
+        android:layout_width="234dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/textViewBottleDispenser"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonAddMoney"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:onClick="pushAddMoneyButton"
+        android:text="@string/buttonAddMoney"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewBottleDispenser" />
+
+    <Button
+        android:id="@+id/buttonBuy"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:onClick="pushBuyButton"
+        android:text="@string/buttonBuy"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonAddMoney" />
+
+    <Button
+        android:id="@+id/buttonRefund"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:onClick="pushRefundMoneyButton"
+        android:text="@string/buttonRefund"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonBuy" />
+
+    <TextView
+        android:id="@+id/textViewMessages"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/textViewMessages"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonRefund" />
+
+    <TextView
+        android:id="@+id/textViewMessageField"
+        android:layout_width="346dp"
+        android:layout_height="163dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="36dp"
+        android:background="#F1EBEB"
+        android:text="@string/textViewEmpty"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMessages" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

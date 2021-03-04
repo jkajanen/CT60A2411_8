@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">CT60A2411_8</string>
+    <string name="textViewBottleDispenser">Bottle Dispenser</string>
+    <string name="textViewMessages">Messages:</string>
+    <string name="textViewEmpty"> </string>
+    <string name="buttonAddMoney">Add Money</string>
+    <string name="buttonBuy">Buy</string>
+    <string name="buttonRefund">Refund</string>
+    <string name="textViewStarted">Started!</string>
+    <string name="textViewRunning">Dispenser running...</string>
+    <string name="textViewAddMoney">Adding Money...</string>
+    <string name="textAddMoneyFirst">Add Money First!</string>
+    <string name="textViewBuy">Buying Beverage...</string>
+    <string name="textViewRefundMoney">Refund: XXX €</string>
+    <string name="textViewDispenserFilled">Dispenser Filled!</string>
+    <string name="textViewNoBeverages">Out of Beverages</string>
 </resources>
