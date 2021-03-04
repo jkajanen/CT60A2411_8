@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("Initializing UI");
         System.out.println("Initializing variables");
         System.out.println("Initializing files"); //Todo: Create text files for init and receipt
+        System.out.println(context.getFilesDir());
 
         titleBottleDispenser = (TextView) findViewById(R.id.textViewBottleDispenser);
         titleMessages = (TextView) findViewById(R.id.textViewMessages);
