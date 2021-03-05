@@ -69,9 +69,8 @@ public class MainActivity extends AppCompatActivity {
        spinnerBottleSelection = (Spinner) findViewById(R.id.spinnerBottleSelection);
 
         ArrayList<Bottle> bottleSelection = new ArrayList<>();
-        Bottle bottle = new Bottle();
         bottleSelection.add(new Bottle(getString(R.string.selectionString)));
-
+        Bottle bottle = new Bottle();
         // Add Bottle-objects into the arraylist for Spinner/Adapter
         for(int i = 0; i < 5; i++) {
             bottle = new Bottle(i);
@@ -90,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         spinnerBottleSelection.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 String selected = parent.getItemAtPosition(pos).toString();
-                if (selected.equals("Select one:")) {
+                if (selected.equals("Select product")) {
                     System.out.println("Start position");
                 }
                 else {
@@ -155,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void pushReceiptButton(View v) {
         String receipt = parseReceipt();
-
         fieldMessages.setText(receipt);
         writeReceipt(receipt);
     }
@@ -164,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
         String title = "RECEIPT\n\n";
         String product = "Product " + lastSoldBottle.getName() + " ";
         String size = lastSoldBottle.getSize() + " l\n";
-        String price = "Price: " + lastSoldBottle.getPrice() + " €";
+        String price = "Paid: " + lastSoldBottle.getPrice() + " €";
         String ret = "\n";
         String thanks = "THANK YOU!";
 
