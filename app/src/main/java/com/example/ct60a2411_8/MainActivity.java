@@ -94,10 +94,10 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else {
                     beverageType = pos-1;
-                    if (beverageType < 0)
+                    /*if (beverageType < 0)
                         fieldMessages.setText("Selected: " + selected +  ", Price: " + myBD.getPrice(pos) + " €");
                     else
-                        fieldMessages.setText("Selected: " + selected +  ", Price: " + myBD.getPrice(beverageType) + " €");
+                      */  fieldMessages.setText("Selected: " + selected +  ", Price: " + myBD.getPrice(beverageType) + " €");
                 }
 
         }
@@ -154,20 +154,25 @@ public class MainActivity extends AppCompatActivity {
 
     public void pushReceiptButton(View v) {
         String receipt = parseReceipt();
-        fieldMessages.setText(receipt);
-        writeReceipt(receipt);
+        if (receipt != "") {
+            fieldMessages.setText(receipt);
+            writeReceipt(receipt);
+        }
+        else
+            fieldMessages.setText("No receipt");
     }
 
     private String parseReceipt() {
-        String title = "RECEIPT\n\n";
-        String product = "Product " + lastSoldBottle.getName() + " ";
-        String size = lastSoldBottle.getSize() + " l\n";
-        String price = "Paid: " + lastSoldBottle.getPrice() + " €";
-        String ret = "\n";
-        String thanks = "THANK YOU!";
-
-        String receipt = title + product + size + price + ret + ret + thanks;
-
+        String receipt = "";
+        if (lastSoldBottle.getPrice() > 0) {
+            String title = "RECEIPT\n\n";
+            String product = "Product " + lastSoldBottle.getName() + " ";
+            String size = lastSoldBottle.getSize() + " l\n";
+            String price = "Paid: " + lastSoldBottle.getPrice() + " €";
+            String ret = "\n";
+            String thanks = "THANK YOU!";
+            receipt = title + product + size + price + ret + ret + thanks;
+        }
         return receipt;
     }
 
