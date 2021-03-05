@@ -8,7 +8,7 @@ public class BottleDispenser {
     private int bottleSelection;
     // The array for the Bottle-objects
 //private Bottle[] bottle_array;
-    private ArrayList<Bottle> myBottles = new ArrayList();
+    public ArrayList<Bottle> myBottles = new ArrayList();
     private float money;
 
     public static BottleDispenser myBD = new BottleDispenser(); // Singleton!!!
@@ -44,6 +44,17 @@ public class BottleDispenser {
         Bottle selectedBottle = myBottles.get(beverageType);
         return selectedBottle.getName();
     }
+
+    public double getSize( int beverageType) {
+        Bottle selectedBottle = myBottles.get(beverageType);
+        return selectedBottle.getSize();
+    }
+
+    public double getPrice( int beverageType) {
+        Bottle selectedBottle = myBottles.get(beverageType);
+        return selectedBottle.getPrice();
+    }
+
 
     public int buyBottle( int beverageType ) {
         Bottle selectedBottle;

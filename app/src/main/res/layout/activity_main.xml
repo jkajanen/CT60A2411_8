@@ -45,36 +45,37 @@
     <Button
         android:id="@+id/buttonRefund"
         android:layout_width="125dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="36dp"
         android:layout_marginTop="16dp"
         android:onClick="pushRefundMoneyButton"
         android:text="@string/buttonRefund"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonBuy" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewMessageField" />
 
     <TextView
         android:id="@+id/textViewMessages"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="140dp"
         android:text="@string/textViewMessages"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonRefund" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonBuy" />
 
     <TextView
         android:id="@+id/textViewMessageField"
-        android:layout_width="346dp"
-        android:layout_height="163dp"
+        android:layout_width="335dp"
+        android:layout_height="107dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="36dp"
         android:background="#F1EBEB"
         android:text="@string/textViewEmpty"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewMessages" />
 
@@ -110,5 +111,30 @@
         android:text="@string/textViewTen"
         app:layout_constraintBottom_toTopOf="@+id/seekBarMoney"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerBottleSelection"
+        android:layout_width="214dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="24dp"
+        android:background="#F1EBEB"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonBuy"
+        app:layout_constraintTop_toBottomOf="@+id/seekBarMoney"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/buttonReceipt"
+        android:layout_width="125dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="36dp"
+        android:onClick="pushReceiptButton"
+        android:text="@string/buttonReceipt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMessageField" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

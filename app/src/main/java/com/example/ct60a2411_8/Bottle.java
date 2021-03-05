@@ -10,15 +10,16 @@ public class Bottle {
     private double defTotal_energy;
     private double defSize;
     private double defPrice;
+    private String strPrice;
     private int numberOfBottles;
 
     public Bottle(){
-        defName = "Pepsi Max";
-        defManufacturer = "Pepsi";
-        defTotal_energy = 0.3f;
-        defSize = 0.5;
-        defPrice = 1.80;
-        numberOfBottles = 5;
+        defName = " ";
+        defManufacturer = " ";
+        defTotal_energy = 0.0d;
+        defSize = 0.0d;
+        defPrice = 0.0d;
+        numberOfBottles = 0;
     }
 
     public Bottle( int beverageType ) {
@@ -74,6 +75,10 @@ public class Bottle {
         }
     }
 
+    public Bottle(String nameIn){
+        defName = nameIn;
+    }
+
     public Bottle(String nameIn, String manuf, float totE){
         defName = nameIn;
         defManufacturer = manuf;
@@ -107,4 +112,27 @@ public class Bottle {
     public void decreaseAmount() {
         numberOfBottles--;
     }
+
+    public void setName(String name){
+        defName = name;
+    }
+
+    public void setSize(double size){
+        defSize=size;
+    }
+
+    public void setPrice(double price){
+        defPrice = price;
+    }
+    /**
+     * Pay attention here, you have to override the toString method as the
+     * ArrayAdapter will reads the toString of the given object for the name
+     *
+     * @return contact_name
+     */
+    @Override
+    public String toString() {
+        return defName;
+    }
+
 }

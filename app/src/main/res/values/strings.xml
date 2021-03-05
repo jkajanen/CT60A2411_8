@@ -6,6 +6,7 @@
     <string name="buttonAddMoney">Add Money</string>
     <string name="buttonBuy">Buy</string>
     <string name="buttonRefund">Refund</string>
+    <string name="buttonReceipt">Receipt</string>
     <string name="textViewStarted">Started!</string>
     <string name="textViewRunning">Dispenser running...</string>
     <string name="textViewAddMoney">Adding Money...</string>
@@ -16,4 +17,7 @@
     <string name="textViewNoBeverages">Out of Beverages</string>
     <string name="textViewZero">0</string>
     <string name="textViewTen">10</string>
+    <string name="selectionString">Select product</string>
+    <string name="noReceipt">No receipt</string>
+    <string name="errorWriteString">Error in writing receipt!</string>
 </resources>
