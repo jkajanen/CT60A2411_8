@@ -14,4 +14,6 @@
     <string name="textViewRefundMoney">Refund: XXX €</string>
     <string name="textViewDispenserFilled">Dispenser Filled!</string>
     <string name="textViewNoBeverages">Out of Beverages</string>
+    <string name="textViewZero">0</string>
+    <string name="textViewTen">10</string>
 </resources>

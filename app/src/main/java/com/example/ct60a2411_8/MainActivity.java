@@ -15,11 +15,11 @@ public class MainActivity extends AppCompatActivity {
     TextView titleBottleDispenser;
     TextView titleMessages;
     TextView fieldMessages;
-    SeekBar seekBar;
+    SeekBar seekBarMoney;
 
 
-    int bottleDispenserStatus = 0;
-    float money;
+    private int bottleDispenserStatus = 0;
+    private float moneyInMachine;
 
     Context context = null;
 
@@ -36,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
         context = MainActivity.this;
 
-        seekBar = (SeekBar)findViewById(R.id.seekBarMoney);
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        seekBarMoney = (SeekBar)findViewById(R.id.seekBarMoney);
+        seekBarMoney.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress,
                                           boolean fromUser) {
@@ -52,9 +52,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 //Toast.makeText(getApplicationContext(),"seekbar touch stopped!", Toast.LENGTH_SHORT).show();
-                float moneyIn = seekBar.getProgress()/10;
-                fieldMessages.setText("Money to be added: " + moneyIn + " €" );
-                money = moneyIn;
+                float moneyIn = (float)seekBar.getProgress()/10;
+                fieldMessages.setText("Money to be added: " + String.format( "%.2f", moneyIn) + " €" );
+                moneyInMachine = moneyIn;
                 //myBD.addMoney(moneyIn);
             }
         });
@@ -65,12 +65,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void pushAddMoneyButton(View v) {
-        float moneyIn = money;
+        float moneyIn = moneyInMachine;
         fieldMessages.setText(R.string.textViewAddMoney);
         myBD.addMoney(moneyIn);
-        fieldMessages.setText("Added: " + moneyIn + " €\n" + "Total: " + myBD.getMoney() + " €\n");
-        // todo: Lisää seekBarin nollaus!!
-        }
+        fieldMessages.setText("Added: " + String.format( "%.2f", moneyIn) + " €\n" + "Total: " + String.format( "%.2f", myBD.getMoney()) + " €\n");
+         }
 
     public void pushBuyButton(View v) {
         fieldMessages.setText(R.string.textViewBuy);
@@ -86,15 +85,17 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("Klink klink. Money came out!");
                 break;
             default:
-                fieldMessages.setText("KACHUNK! " + myBD.getName(0) + " came out of the dispenser!");
+                fieldMessages.setText("KACHUNK!\n " + myBD.getName(0) + " came out of the dispenser!");
                 System.out.println("KACHUNK! " + "selectedBottle.getName()" + " came out of the dispenser!");
                 break;
         }
     }
 
     public void pushRefundMoneyButton(View v) {
-        fieldMessages.setText("Refund: " + myBD.getMoney() + " €\n");
+        fieldMessages.setText("Refund: " + String.format( "%.2f", myBD.getMoney()) + " €\n");
         myBD.returnMoney();
+        seekBarMoney.setProgress(0);
+        moneyInMachine = 0;
     }
 
     public void myInit() {
