@@ -8,14 +8,18 @@ public class BottleDispenser {
     private int bottleSelection;
     // The array for the Bottle-objects
 //private Bottle[] bottle_array;
-    public ArrayList<Bottle> myBottles = new ArrayList();
-    private float money;
+    public ArrayList<Bottle> myBottles = new ArrayList<>();
+    private double money;
 
     public static BottleDispenser myBD = new BottleDispenser(); // Singleton!!!
 
+    public static BottleDispenser getInstance() {
+        return myBD;
+    } // Singleton!!!
+
     private BottleDispenser() {
         bottleSelection = 5;
-        money = 0.0f;
+        money = 0.00d;
 
         Bottle myBottle;
 
@@ -26,17 +30,12 @@ public class BottleDispenser {
         }
     }
 
-    // Singleton!!!
-    public static BottleDispenser getInstance() {
-        return myBD;
-    }
-
-    public void addMoney(float moneyIn) {
+    public void addMoney(double moneyIn) {
         money += moneyIn;
         System.out.println("Klink! Added more money!");
     }
 
-    public float getMoney() {
+    public double getMoney() {
         return money;
     }
 
@@ -78,7 +77,6 @@ public class BottleDispenser {
     }
 
     public void returnMoney() {
-        System.out.println("Klink klink. Money came out! You got " + String.format( "%.2f", money ) + "€ back");
         money = 0;
     }
 

@@ -10,7 +10,7 @@ public class Bottle {
     private double defTotal_energy;
     private double defSize;
     private double defPrice;
-    private String strPrice;
+    //private String strPrice;
     private int numberOfBottles;
 
     public Bottle(){
@@ -18,7 +18,7 @@ public class Bottle {
         defManufacturer = " ";
         defTotal_energy = 0.0d;
         defSize = 0.0d;
-        defPrice = 0.0d;
+        defPrice = 0.00d;
         numberOfBottles = 0;
     }
 
@@ -37,7 +37,7 @@ public class Bottle {
                 defManufacturer = "Pepsi";
                 defTotal_energy = 0.9f;
                 defSize = 1.5;
-                defPrice = 2.2;
+                defPrice = 2.20;
                 numberOfBottles = 3;
                 break;
             case 2:
@@ -45,7 +45,7 @@ public class Bottle {
                 defManufacturer = "Coca-Cola Company";
                 defTotal_energy = 0.3f;
                 defSize = 0.5;
-                defPrice = 2.0;
+                defPrice = 2.00;
                 numberOfBottles = 5;
                 break;
             case 3:
@@ -53,7 +53,7 @@ public class Bottle {
                 defManufacturer = "Coca-Cola Company";
                 defTotal_energy = 0.9f;
                 defSize = 1.5;
-                defPrice = 2.5;
+                defPrice = 2.50;
                 numberOfBottles = 3;
                 break;
             case 4:

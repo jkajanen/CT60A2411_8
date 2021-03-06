@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int bottleDispenserStatus = 0;
     private int beverageType = -1; // Start status, no beverages selected to buy
-    private float moneyInMachine;
+    private double moneyInMachine;
     private Bottle lastSoldBottle = new Bottle();
 
     Context context = null;
@@ -60,9 +60,9 @@ public class MainActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 //Toast.makeText(getApplicationContext(),"seekbar touch stopped!", Toast.LENGTH_SHORT).show();
                 float moneyIn = (float)seekBar.getProgress()/10;
-                fieldMessages.setText("Money to be added: " + String.format( "%.2f", moneyIn) + " €" );
+                String messageText = "Money to be added: " + String.format( "%.2f", moneyIn) + " €";
+                fieldMessages.setText(messageText);
                 moneyInMachine = moneyIn;
-                //myBD.addMoney(moneyIn);
             }
         });
 
@@ -70,17 +70,17 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayList<Bottle> bottleSelection = new ArrayList<>();
         bottleSelection.add(new Bottle(getString(R.string.selectionString)));
-        Bottle bottle = new Bottle();
+
         // Add Bottle-objects into the arraylist for Spinner/Adapter
         for(int i = 0; i < 5; i++) {
-            bottle = new Bottle(i);
-            String bottleName = bottle.getName() + " " + String.valueOf(bottle.getSize()) + " l";
+            Bottle bottle = new Bottle(i);
+            String bottleName = bottle.getName() + " " + bottle.getSize() + " l";
             bottleSelection.add(new Bottle(bottleName));
             System.out.println(bottleName);
         }
 
         // Create an ArrayAdapter using the string array and a default spinner layout
-       ArrayAdapter<Bottle> adapterBottleSelection = new ArrayAdapter<Bottle>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, bottleSelection);
+       ArrayAdapter<Bottle> adapterBottleSelection = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, bottleSelection);
         // Specify the layout to use when the list of choices appears
         adapterBottleSelection.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
@@ -94,15 +94,14 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else {
                     beverageType = pos-1;
-                    /*if (beverageType < 0)
-                        fieldMessages.setText("Selected: " + selected +  ", Price: " + myBD.getPrice(pos) + " €");
-                    else
-                      */  fieldMessages.setText("Selected: " + selected +  ", Price: " + myBD.getPrice(beverageType) + " €");
+                    String textMessage = "Selected: " + selected +  ", Price: " + myBD.getPrice(beverageType) + " €";
+                    fieldMessages.setText(textMessage);
                 }
 
         }
             public void onNothingSelected(AdapterView<?> parent) {
-                fieldMessages.setText("Nothing selected!");
+                String textMessage = "Nothing selected!";
+                fieldMessages.setText(textMessage);
             }
         });
 
@@ -110,11 +109,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void pushAddMoneyButton(View v) {
-        float moneyIn = moneyInMachine;
+        double moneyIn = moneyInMachine;
         fieldMessages.setText(R.string.textViewAddMoney);
         myBD.addMoney(moneyIn);
         seekBarMoney.setProgress(0);
-        fieldMessages.setText("Added: " + String.format( "%.2f", moneyIn) + " €\n" + "Total: " + String.format( "%.2f", myBD.getMoney()) + " €\n");
+        String textMessage = "Added: " + String.format( "%.2f", moneyIn) + " €\n" + "Total: " + String.format( "%.2f", myBD.getMoney()) + " €\n";
+        fieldMessages.setText(textMessage);
     }
 
     public void pushBuyButton(View v) {
@@ -131,22 +131,25 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println("Klink klink. Money came out!");
                     break;
                 default:
-                    fieldMessages.setText("KACHUNK!\n " + myBD.getName(beverageType) + " " + String.format( "%.2f", myBD.getSize(beverageType)) + " l came out of the dispenser!");
-                    System.out.println("KACHUNK! " + myBD.getName(beverageType) + " came out of the dispenser!");
+                    String textMessage = "KACHUNK!\n " + myBD.getName(beverageType) + " " + String.format( "%.2f", myBD.getSize(beverageType)) + " l came out of the dispenser!";
+                    fieldMessages.setText(textMessage);
+                    System.out.println(textMessage);
                     lastSoldBottle.setName(myBD.getName(beverageType));
                     lastSoldBottle.setSize(myBD.getSize(beverageType));
                     lastSoldBottle.setPrice(myBD.getPrice(beverageType));
+                    spinnerBottleSelection.setSelection(0);
                     break;
             }
         }
         else {
-            System.out.println("WTF");
-            fieldMessages.setText("Select product first!");
+            String textMessage = "Select product first!";
+            fieldMessages.setText(textMessage);
         }
     }
 
     public void pushRefundMoneyButton(View v) {
-        fieldMessages.setText("Refund: " + String.format( "%.2f", myBD.getMoney()) + " €\n");
+        String textMessage = "Refund: " + String.format( "%.2f", myBD.getMoney()) + " €\n";
+        fieldMessages.setText(textMessage);
         myBD.returnMoney();
         seekBarMoney.setProgress(0);
         moneyInMachine = 0;
@@ -154,23 +157,25 @@ public class MainActivity extends AppCompatActivity {
 
     public void pushReceiptButton(View v) {
         String receipt = parseReceipt();
-        if (receipt != "") {
+        if (!(receipt == null)) {
             fieldMessages.setText(receipt);
             writeReceipt(receipt);
         }
-        else
-            fieldMessages.setText("No receipt");
+        else {
+            String textMessage = "No receipt";
+            fieldMessages.setText(textMessage);
+        }
     }
 
     private String parseReceipt() {
         String receipt = "";
         if (lastSoldBottle.getPrice() > 0) {
-            String title = "RECEIPT\n\n";
-            String product = "Product " + lastSoldBottle.getName() + " ";
+            String title = "My Beverage Dispensers Inc.\n\n\tRECEIPT\n\n";
+            String product = "\t\tProduct " + lastSoldBottle.getName() + " ";
             String size = lastSoldBottle.getSize() + " l\n";
-            String price = "Paid: " + lastSoldBottle.getPrice() + " €";
+            String price = "\t\tPaid: " + String.format( "%.2f", lastSoldBottle.getPrice()) + " €";
             String ret = "\n";
-            String thanks = "THANK YOU!";
+            String thanks = "\tTHANK YOU!";
             receipt = title + product + size + price + ret + ret + thanks;
         }
         return receipt;
@@ -198,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("Project CT60A2411");
         System.out.println("Initializing UI");
         System.out.println("Initializing variables");
-        System.out.println("Initializing files"); //Todo: Create text files for init and receipt
+        System.out.println("Initializing files");
         System.out.println(context.getFilesDir());
 
         titleBottleDispenser = (TextView) findViewById(R.id.textViewBottleDispenser);
