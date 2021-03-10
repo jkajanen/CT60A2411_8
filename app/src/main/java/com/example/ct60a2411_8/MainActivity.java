@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
                     lastSoldBottle.setName(myBD.getName(beverageType));
                     lastSoldBottle.setSize(myBD.getSize(beverageType));
                     lastSoldBottle.setPrice(myBD.getPrice(beverageType));
-                    spinnerBottleSelection.setSelection(0);
+                    spinnerBottleSelection.setSelection(0); //Reset bottle selection
                     beverageType = -1;
                     break;
                 }
