@@ -59,7 +59,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 //Toast.makeText(getApplicationContext(),"seekbar touch stopped!", Toast.LENGTH_SHORT).show();
-                float moneyIn = (float)seekBar.getProgress()/10;
+                double moneyIn = (double)seekBar.getProgress()/10;
+
                 String messageText = "Money to be added: " + String.format( "%.2f", moneyIn) + " €";
                 fieldMessages.setText(messageText);
                 moneyInMachine = moneyIn;
@@ -129,6 +130,8 @@ public class MainActivity extends AppCompatActivity {
                 case 0:
                     fieldMessages.setText(R.string.textViewNoBeverages);
                     System.out.println("Klink klink. Money came out!");
+                    spinnerBottleSelection.setSelection(0);
+                    beverageType = -1;
                     break;
                 default:
                     String textMessage = "KACHUNK!\n " + myBD.getName(beverageType) + " " + String.format( "%.2f", myBD.getSize(beverageType)) + " l came out of the dispenser!";
@@ -138,8 +141,9 @@ public class MainActivity extends AppCompatActivity {
                     lastSoldBottle.setSize(myBD.getSize(beverageType));
                     lastSoldBottle.setPrice(myBD.getPrice(beverageType));
                     spinnerBottleSelection.setSelection(0);
+                    beverageType = -1;
                     break;
-            }
+                }
         }
         else {
             String textMessage = "Select product first!";
